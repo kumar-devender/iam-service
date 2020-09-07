@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static info.pragmaticdeveloper.iam.domain.UserRole.SOFTWARE_ENGINEER;
+import static info.pragmaticdeveloper.iam.domain.UserRole.SR_SOFTWARE_ENGINEER;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -22,8 +25,8 @@ public class BasicOauthConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/index.html")
-                .permitAll()
+                .antMatchers("/", "/index.html").permitAll()
+                .antMatchers("/api/v1/greeting/hello").hasRole(SR_SOFTWARE_ENGINEER.name())
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -36,8 +39,13 @@ public class BasicOauthConfig extends WebSecurityConfigurerAdapter {
         UserDetails devender = User.builder()
                 .username("devender")
                 .password(passwordEncoder.encode("password"))
-                .roles("SOFTWARE_ENGINEER")
+                .roles(SOFTWARE_ENGINEER.name())
                 .build();
-        return new InMemoryUserDetailsManager(devender);
+        UserDetails kumar = User.builder()
+                .username("kumar")
+                .password(passwordEncoder.encode("password"))
+                .roles(SR_SOFTWARE_ENGINEER.name())
+                .build();
+        return new InMemoryUserDetailsManager(devender, kumar);
     }
 }

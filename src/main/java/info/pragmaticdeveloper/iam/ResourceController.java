@@ -5,11 +5,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("v1/api/")
+@RequestMapping("api/v1/")
 public class ResourceController {
 
     @RequestMapping("greeting/hello")
     public String hello() {
+        return "hello";
+    }
+
+    @RequestMapping("greeting/hi")
+    public String hi() {
         return "hello";
     }
 }
