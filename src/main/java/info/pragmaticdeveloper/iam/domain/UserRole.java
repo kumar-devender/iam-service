@@ -1,8 +1,10 @@
 package info.pragmaticdeveloper.iam.domain;
 
 import com.google.common.collect.Sets;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static info.pragmaticdeveloper.iam.domain.UserPermission.VIEW_GRAFANA_MATRIX;
 import static info.pragmaticdeveloper.iam.domain.UserPermission.VIEW_KIBANA_LOGS;
@@ -19,6 +21,14 @@ public enum UserRole {
 
     public Set<UserPermission> getPermissions() {
         return permissions;
+    }
+
+    public Set<SimpleGrantedAuthority> getAuthorities() {
+        Set<SimpleGrantedAuthority> authorities = this.permissions
+                .stream().map(userPermission -> new SimpleGrantedAuthority(userPermission.name()))
+                .collect(Collectors.toSet());
+        authorities.add(new SimpleGrantedAuthority(this.name()));
+        return authorities;
     }
 
     /*    TEAM_LEAD,
