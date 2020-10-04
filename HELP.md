@@ -26,3 +26,19 @@ The following guides illustrate how to use some features concretely:
 * https://docs.spring.io/spring-security-oauth2-boot/docs/2.2.x-SNAPSHOT/reference/html/boot-features-security-oauth2-authorization-server.html
 * https://www.toptal.com/spring/spring-boot-oauth2-jwt-rest-protection
 * https://spring.io/guides/topicals/spring-security-architecture/
+
+* Authentication manager: coordinate with Authentication provider to perform the authentication.
+```
+class ProviderManager implements AuthenticationManager{
+private List<AuthenticationProvider> providers
+public Authentication authenticate(Authentication authentication){
+providers.stream
+.findFirst()
+.authenticate(authentication)
+.orElseThrow(()->new anyException());
+
+}
+}
+```
+* DelegatingFilterProxy
+* Authentication provider does the actual work of authentication.

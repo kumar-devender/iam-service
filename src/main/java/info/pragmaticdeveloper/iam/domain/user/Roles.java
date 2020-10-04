@@ -1,4 +1,4 @@
-package info.pragmaticdeveloper.iam.domain;
+package info.pragmaticdeveloper.iam.domain.user;
 
 import com.google.common.collect.Sets;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,20 +6,20 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static info.pragmaticdeveloper.iam.domain.UserPermission.VIEW_GRAFANA_MATRIX;
-import static info.pragmaticdeveloper.iam.domain.UserPermission.VIEW_KIBANA_LOGS;
+import static info.pragmaticdeveloper.iam.domain.user.Permissions.VIEW_GRAFANA_MATRIX;
+import static info.pragmaticdeveloper.iam.domain.user.Permissions.VIEW_KIBANA_LOGS;
 
-public enum UserRole {
+public enum Roles {
     SOFTWARE_ENGINEER(Sets.newHashSet()),
     SR_SOFTWARE_ENGINEER(Sets.newHashSet(VIEW_KIBANA_LOGS, VIEW_GRAFANA_MATRIX));
 
-    UserRole(Set<UserPermission> permissions) {
+    Roles(Set<Permissions> permissions) {
         this.permissions = permissions;
     }
 
-    private Set<UserPermission> permissions;
+    private Set<Permissions> permissions;
 
-    public Set<UserPermission> getPermissions() {
+    public Set<Permissions> getPermissions() {
         return permissions;
     }
 
