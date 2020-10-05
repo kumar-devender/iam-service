@@ -1,35 +1,36 @@
 package info.pragmaticdeveloper.iam.domain.user;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 @Data
-@Table(name = "role_permission")
-public class RolePermission {
+public abstract class BaseEntity {
+    @Id
+    @Type(type = "pg-uuid")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID id;
-    private UUID roleId;
-    private UUID permissionId;
 
     @CreatedBy
     @Column(updatable = false)
     private UUID createdBy;
 
     @CreatedDate
-    @Column(updatable = false)
-    @Type(type = "PersistentDateTime")
+    @Column(updatable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime createdOn;
 
     @LastModifiedDate
-    @Type(type = "PersistentDateTime")
+    @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime updatedOn;
 }

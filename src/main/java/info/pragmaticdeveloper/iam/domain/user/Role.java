@@ -1,35 +1,23 @@
 package info.pragmaticdeveloper.iam.domain.user;
 
 import lombok.Data;
-import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
 
 @Data
 @Entity
-@Table(name = "role")
-public class Role {
-    private UUID id;
+@Table(name = "role", schema = "iam_store")
+public class Role extends BaseEntity {
     private String name;
     private String description;
 
-    @CreatedBy
-    @Column(updatable = false)
-    private UUID createdBy;
-
-    @CreatedDate
-    @Column(updatable = false)
-    @Type(type = "PersistentDateTime")
-    private LocalDateTime createdOn;
-
-    @LastModifiedDate
-    @Type(type = "PersistentDateTime")
-    private LocalDateTime updatedOn;
+    @ManyToMany
+    @JoinTable(
+            name = "role_permission",
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "ID")}
+    )
+    private Collection<Permission> permissions = new HashSet<>();
 }
