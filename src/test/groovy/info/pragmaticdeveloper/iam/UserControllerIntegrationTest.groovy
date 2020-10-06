@@ -3,6 +3,7 @@ package info.pragmaticdeveloper.iam
 import info.pragmaticdeveloper.iam.domain.user.Credential
 import info.pragmaticdeveloper.iam.domain.user.Member
 import info.pragmaticdeveloper.iam.dto.UserRegistrationDTO
+import info.pragmaticdeveloper.iam.dto.UserType
 import info.pragmaticdeveloper.iam.repository.CredentialRepository
 import info.pragmaticdeveloper.iam.repository.UserRepository
 import io.zonky.test.db.AutoConfigureEmbeddedDatabase
@@ -29,7 +30,7 @@ class UserControllerIntegrationTest extends IntegrationTestSpecification {
 
     private static final String RESOURCE_BASE_PATH = 'api/v1/users'
 
-    def 'create transaction with correct time stamp'() {
+    def 'register user should successful'() {
         //@formatter:off
         given:
         def registrationDTO = buildRegistrationDTO()
@@ -50,7 +51,6 @@ class UserControllerIntegrationTest extends IntegrationTestSpecification {
 
         Credential credential = credentialRepository.findByUserId(users.get(0).getId())
         credential != null
-
     }
 
     private static UserRegistrationDTO buildRegistrationDTO() {
@@ -59,7 +59,7 @@ class UserControllerIntegrationTest extends IntegrationTestSpecification {
         dto.setLastName("last")
         dto.setFistName("fist")
         dto.setPassword("anypass")
+        dto.setUserType(UserType.CUSTOMER)
         return dto
     }
-
 }

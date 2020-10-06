@@ -22,6 +22,7 @@ public class UserService {
         member.setEmail(registrationDTO.getEmail());
         member.setFirstName(registrationDTO.getFistName());
         member.setLastName(registrationDTO.getLastName());
+        member.setUserType(registrationDTO.getUserType());
         userRepository.save(member);
 
         Credential credential = new Credential();

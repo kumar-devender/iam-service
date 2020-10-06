@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -18,4 +19,6 @@ public class UserRegistrationDTO {
     private String email;
     @NotBlank
     private String password;
+    @NotNull
+    private UserType userType;
 }
