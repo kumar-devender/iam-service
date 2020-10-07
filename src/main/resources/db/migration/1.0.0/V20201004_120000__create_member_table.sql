@@ -92,29 +92,3 @@ CREATE TABLE iam_store.role_permission
     created_on    TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     updated_on    TIMESTAMP WITHOUT TIME ZONE
 );
-
--- Insert role and permission
-
--- INSERT INTO iam_store.permission(id, name, description, created_by, created_on, updated_on) VALUES
--- (uuid_generate_v4(), 'admin_access', 'full admin access to everything in the system(God mode)', null , now(), now());
---
--- INSERT INTO iam_store.role(id, name, description, created_by, created_on, updated_on) VALUES
--- (uuid_generate_v4(), 'admin', 'admin role', null , now(), now());
---
--- INSERT INTO iam_store.role_permission(id, role_id, permission_id, created_by, created_on, updated_on) VALUES
--- (uuid_generate_v4(),
---  (SELECT id FROM iam_store.role where name = 'admin'), -- admin role id
---  (SELECT id FROM iam_store.permission where name = 'admin_access'), -- admin permission id
---  null , now(), now());
-
-
--- insert admin user
-
--- INSERT INTO iam_store.member(id, first_name, last_name, email, user_type, created_by, created_on, updated_on) VALUES
--- (uuid_generate_v4(), 'devender', 'kumar', 'devender.kumar@gmail.com', 'ADMINISTRATOR', null , now(), now());
---
--- INSERT INTO iam_store.credential(id, password, user_id, enabled, created_by, created_on, updated_on) VALUES
--- (uuid_generate_v4(), '$2y$10$eLmz/6cohzveHv90kZiLyupGd2oKtLc4vgVGn4m10vUvejfZqXNke',
---  (SELECT id FROM iam_store.member where email = 'devender.kumar@gmail.com'), -- admin user id
---  true, null , now(), now());
-

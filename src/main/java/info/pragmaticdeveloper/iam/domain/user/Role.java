@@ -16,8 +16,8 @@ public class Role extends BaseEntity {
     @ManyToMany
     @JoinTable(
             name = "role_permission",
-            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "ID")}
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "id")}
     )
     private Collection<Permission> permissions = new HashSet<>();
 }
