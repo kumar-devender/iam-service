@@ -1,25 +1,20 @@
 package info.pragmaticdeveloper.iam
 
+import info.pragmaticdeveloper.iam.annotation.ControllerIntegrationTest
 import info.pragmaticdeveloper.iam.domain.user.Credential
 import info.pragmaticdeveloper.iam.domain.user.Member
 import info.pragmaticdeveloper.iam.dto.UserRegistrationDTO
 import info.pragmaticdeveloper.iam.dto.UserType
 import info.pragmaticdeveloper.iam.repository.CredentialRepository
 import info.pragmaticdeveloper.iam.repository.UserRepository
-import io.zonky.test.db.AutoConfigureEmbeddedDatabase
-import org.flywaydb.test.annotation.FlywayTest
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.jdbc.Sql
 
 import static org.springframework.http.HttpStatus.CREATED
+import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD
 
-@ContextConfiguration(classes = Application.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@FlywayTest
-@AutoConfigureEmbeddedDatabase
-@ActiveProfiles(profiles = "integration-test")
+@ControllerIntegrationTest
+@Sql(executionPhase = BEFORE_TEST_METHOD, value = "/sql/truncate-all-data.sql")
 class UserControllerIntegrationTest extends IntegrationTestSpecification {
 
     @Autowired

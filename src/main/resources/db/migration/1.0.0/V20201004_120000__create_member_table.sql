@@ -74,12 +74,9 @@ CREATE TABLE iam_store.permission
 
 CREATE TABLE iam_store.credential_role
 (
-    id         UUID NOT NULL PRIMARY KEY,
+--     id         UUID NOT NULL PRIMARY KEY,
     user_id    UUID NOT NULL,
     role_id    UUID NOT NULL,
-    created_by UUID,
-    created_on TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-    updated_on TIMESTAMP WITHOUT TIME ZONE,
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES iam_store.member(id)
 );
 

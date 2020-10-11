@@ -21,7 +21,7 @@ public class Credential extends BaseEntity implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "credential_role",
+            name = "credential_role", schema = "iam_store",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
