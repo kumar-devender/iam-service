@@ -1,5 +1,6 @@
 package info.pragmaticdeveloper.iam.domain.user;
 
+import info.pragmaticdeveloper.iam.domain.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
 package info.pragmaticdeveloper.iam.domain.client;
 
-import info.pragmaticdeveloper.iam.domain.user.BaseEntity;
+import info.pragmaticdeveloper.iam.domain.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;

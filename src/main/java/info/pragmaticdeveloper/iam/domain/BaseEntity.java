@@ -1,4 +1,4 @@
-package info.pragmaticdeveloper.iam.domain.user;
+package info.pragmaticdeveloper.iam.domain;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
